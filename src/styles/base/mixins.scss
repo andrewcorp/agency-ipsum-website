@@ -1,0 +1,14 @@
+@mixin source-sans-regular{
+  font-family: $source-sans-pro;
+  font-weight: 400;
+}
+
+@mixin source-sans-bold{
+  font-family: $source-sans-pro;
+  font-weight: 700;
+}
+
+@mixin source-sans-black{
+  font-family: $source-sans-pro;
+  font-weight: 900;
+}

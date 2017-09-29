@@ -1,0 +1,9 @@
+// Base styles - CSS reset, body, typography etc.
+@import 'base/reset';
+@import 'base/variables';
+@import 'base/mixins';
+@import 'base/typography';
+@import 'base/main';
+
+// Layout styles
+@import 'layout/main';
