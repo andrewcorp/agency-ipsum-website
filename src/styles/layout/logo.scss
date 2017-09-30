@@ -1,0 +1,11 @@
+.logo{
+  align-items: flex-end;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+.logo__img{
+  display: block;
+  margin-left: 0.75rem;
+  transform:translateY(-0.45rem);
+}

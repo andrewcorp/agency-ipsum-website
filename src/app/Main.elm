@@ -1,7 +1,7 @@
 module Main exposing (..)
 
-import Html exposing (Html, div, h1, h2, button, text)
-import Html.Attributes exposing (class, style)
+import Html exposing (Html, div, h1, h2, img, button, label, text)
+import Html.Attributes exposing (class, src, style, width, height)
 import Html.Events exposing (onClick)
 
 -- TODO: Dynamically generate the subheading text
@@ -33,8 +33,14 @@ view subheading =
   div [class "wrapper", style [("background-image", "url('images/background-6.jpg')")]]
     [ div [class "overlay"] []
     , div [class "container"]
-        [ h1 [class "display"] [text "Agency Ipsum"]
+        [ div [class "logo"]
+          [ h1 [class "display logo__text"] [text "Agency Ipsum"]
+          , img [class "logo__img", src "images/coffee-cup.svg", width 70, height 70] []
+        ]
         , h2 [class "subheading"] [text subheading]
-        , button [ onClick GenerateIpsum ] [text "New ipsum"]
+        , div [class "form"]
+        [ label [class "form__label"] [text "I want 3 paragraphs between 5 and 7 sentences long"]
+          , button [ class "button", onClick GenerateIpsum ] [text "New ipsum"]
+        ]
       ]
     ]
