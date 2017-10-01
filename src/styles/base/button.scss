@@ -1,6 +1,7 @@
 .button{
   background: transparent;
   border: 0;
+  color: $white;
   cursor: pointer;
   display: inline-block;
   font-size: 1.5rem;
@@ -9,7 +10,7 @@
   z-index: 1;
   @include nunito-light;
   &:before{
-    background: $white;
+    background: $tangerine;
     bottom: 0;
     content: '';
     left: 0;
@@ -19,7 +20,7 @@
     z-index: -1;
   }
   &:after{
-    background: $light-grey;
+    background: $burnt-tangerine;
     bottom: 0;
     display: block;
     content: '';
