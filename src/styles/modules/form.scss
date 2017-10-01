@@ -1,6 +1,6 @@
 .form {
-  font-size: 3rem;
-  padding-top:3vmax;
+  font-size: 2.85vmax;
+  padding-top:2.75vmax;
   @include nunito-extra-light;
 }
 
@@ -8,7 +8,7 @@
   align-items: center;
   justify-content: center;
   display: flex;
-  margin: 0 0 2rem 0;
+  margin: 0 0 1.75vmax 0;
 }
 
 .form__label, .form__input-wrap, .form__toggle {
@@ -61,5 +61,5 @@
 }
 
 .form__button {
-  margin: 2.5vmax auto 0 auto;
+  margin: 2.25vmax auto 0 auto;
 }

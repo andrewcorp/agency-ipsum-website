@@ -2,15 +2,18 @@
   align-items: center;
   display: flex;
   justify-content: center;
-  margin-bottom: 3rem;
+  margin-bottom: 3vmax;
 }
 .logo__wrap {
   align-items: center;
-  border: 3px solid $white;
+  border: 2px solid $white;
   border-radius: 50%;
   display: flex;
-  height: 6rem;
+  height: 5.5vmax;
   justify-content: center;
   margin-right: 1.5rem;
-  width: 6rem;
+  width: 5.5vmax;
+}
+.logo__img{
+  max-width:50%;
 }
