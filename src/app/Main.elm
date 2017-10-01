@@ -31,12 +31,14 @@ update msg subheading =
 
 view : Subheading -> Html Ipsum
 view subheading =
-  div [class "wrapper", style [("background-image", "url('images/background-1.jpg')")]]
+  div [class "wrapper", style [("background-image", "url('images/background-1.jpg')")] ]
     [ div [class "overlay"] []
     , div [class "container"]
         [ div [class "logo"]
-          [ h1 [class "display logo__text"] [text "Agency Ipsum"]
-          , img [class "logo__img", src "images/coffee-cup.svg", width 70, height 70] []
+          [ div [class "logo__wrap"]
+            [ img [class "logo__img", src "images/coffee-cup.svg", width 55, height 55] []
+          ]
+          , h1 [class "display logo__text"] [text "Agency Ipsum"]
         ]
         , h2 [class "subheading"] [text subheading]
         , div [class "form"]

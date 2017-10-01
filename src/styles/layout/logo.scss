@@ -1,12 +1,16 @@
-.logo{
-  align-items: flex-end;
+.logo {
+  align-items: center;
   display: flex;
   justify-content: center;
-  margin-bottom: 1rem;
-  
+  margin-bottom: 3rem;
 }
-.logo__img{
-  display: block;
-  margin-left: 0.75rem;
-  transform:translateY(-0.45rem);
+.logo__wrap {
+  align-items: center;
+  border: 3px solid $white;
+  border-radius: 50%;
+  display: flex;
+  height: 6rem;
+  justify-content: center;
+  margin-right: 1.5rem;
+  width: 6rem;
 }
