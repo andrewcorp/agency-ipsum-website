@@ -1,0 +1,63 @@
+.form {
+  font-size: 3rem;
+  padding-top:3vmax;
+  @include nunito-light;
+}
+
+.form__row {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  margin: 0 0 2rem 0;
+}
+
+.form__label, .form__input-wrap, .form__toggle {
+  display: inline-block;
+}
+
+.form__input-wrap {
+  background: $black-30;
+  display: inline-flex;
+  margin: 0 1.25rem;
+  padding: 0.75rem 1rem;
+}
+
+.form__input {
+  margin: 0 0.5rem 0 0;
+  position: relative;
+}
+
+.form__toggle {
+  align-self: stretch;
+  font-size: 1rem;
+  position: relative;
+  width:1rem;
+}
+
+.form__toggle-up, .form__toggle-down {
+  height: 40%;
+  left: 0;
+  position: absolute;
+  width: 100%;
+}
+
+.form__toggle-up {
+  top: 10%;
+  &:before{
+    content: "\25BE";
+    display:block;
+    transform: scaleY(-1);
+  }
+}
+
+.form__toggle-down {
+  bottom: 10%;
+  &:before{
+    content: "\25BE";
+    display:block;
+  }
+}
+
+.form__button {
+  margin: 2.5vmax auto 0 auto;
+}

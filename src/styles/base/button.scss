@@ -1,8 +1,39 @@
 .button{
-  background: $white;
-  border:0;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
   display: inline-block;
-  font-size: 1rem;
-  padding: 1rem 2rem;
+  font-size: 1.5rem;
+  padding: 1rem 3rem;
+  position: relative;
+  z-index: 1;
   @include nunito-light;
+  &:before{
+    background: $white;
+    bottom: 0;
+    content: '';
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: -1;
+  }
+  &:after{
+    background: $light-grey;
+    bottom: 0;
+    display: block;
+    content: '';
+    height: 5px;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    transform:translateY(5px);
+    z-index: -2;
+  }
+  &:hover{
+    transform: translateY(1.5px);
+    &:after{
+      transform:translateY(3.5px);
+    }
+  }
 }

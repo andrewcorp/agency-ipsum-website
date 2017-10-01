@@ -22,13 +22,15 @@ html {
 }
 
 .overlay {
-  background: rgba(0,0,0,0.3);
+  background: $black-50;
   z-index: 0;
 }
 
 .wrapper {
   align-items: center;
+  background-position: center;
   background-size: cover;
   display: flex;
   justify-content: center;
+  padding:4vmax;
 }

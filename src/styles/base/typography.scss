@@ -4,11 +4,15 @@
 }
 
 .subheading {
-  font-size: 1.75rem;
-  margin-bottom: 1rem;
+  color: $white;
+  background: $black-30;
+  font-size: 1.35rem;
+  margin: 1.5rem 0;
+  padding:0.75rem 1rem;
+  @include nunito-extra-light;
 }
 
 .body {
-  font-size: 1.75rem;
+  font-size: 1rem;
   margin-bottom: 1rem;
 }
