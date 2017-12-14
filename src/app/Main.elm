@@ -1,81 +1,93 @@
 module Main exposing (..)
 
-import Html exposing (Html, div, h1, h2, img, button, label, span, text)
-import Html.Attributes exposing (class, src, style, width, height)
+import Html exposing (Html, button, div, h1, h2, img, label, span, text)
+import Html.Attributes exposing (class, height, src, style, width)
 import Html.Events exposing (onClick)
+
 
 -- TODO: Dynamically generate the subheading text
 -- TODO: Dynamically generate button text (innovate, disrupt, synergise, go viral)
+
+
 main =
-  Html.beginnerProgram { model = subheading, view = view, update = update }
+    Html.beginnerProgram { model = init, view = view, update = update }
+
+
 
 -- Model
 
-type alias Subheading = String
 
-subheading : Subheading
-subheading =
-  "Generating dummy text that engages dark social to make the logo bigger"
+type alias Model =
+    { intro : String
+    , buttonText : String
+    , paragraphsMin : Int
+    , paragraphsMax : Int
+    , sentences : Int
+    }
+
+
+init : Model
+init =
+    { intro = "Generating dummy text that engages dark social to make the logo bigger"
+    , buttonText = "Surprise and delight"
+    , paragraphsMin = 4
+    , paragraphsMax = 3
+    , sentences = 2
+    }
+
+
 
 -- Update
 
-type Ipsum = GenerateIpsum
 
-update: Ipsum -> Subheading -> Subheading
-update msg subheading =
-  case msg of
-    GenerateIpsum ->
-      "this is a new string"
+type Msg
+    = GenerateIpsum
+
+
+update : Msg -> Model -> Model
+update msg model =
+    case msg of
+        GenerateIpsum ->
+            { model | intro = "New value" }
+
+
+row : String -> Int -> String -> Html Msg
+row label1 qty label2 =
+    div [ class "form__row" ]
+        [ label [ class "form__label" ] [ text label1 ]
+        , div [ class "form__input-wrap" ]
+            [ span [ class "form__input" ] [ text (toString qty) ]
+            , div [ class "form__toggle" ]
+                [ span [ class "form__toggle-up" ] []
+                , span [ class "form__toggle-down" ] []
+                ]
+            ]
+        , label [ class "form__label" ] [ text label2 ]
+        ]
+
+
 
 -- View
 
-view : Subheading -> Html Ipsum
-view subheading =
-  div [class "wrapper", style [("background-image", "url('images/background-1.jpg')")] ]
-    [ div [class "overlay"] []
-    , div [class "container"]
-        [ div [class "logo"]
-          [ div [class "logo__wrap"]
-            [ img [class "logo__img", src "images/coffee-cup.svg", width 55, height 55] []
-          ]
-          , h1 [class "display logo__text"] [text "Agency Ipsum"]
+
+view : Model -> Html Msg
+view model =
+    div [ class "wrapper", style [ ( "background-image", "url('images/background-6.jpg')" ) ] ]
+        [ div [ class "overlay" ] []
+        , div [ class "container" ]
+            [ div [ class "logo" ]
+                [ div [ class "logo__wrap" ]
+                    [ img [ class "logo__img", src "images/coffee-cup.svg", width 55, height 55 ] []
+                    ]
+                , h1 [ class "display logo__text" ] [ text "Agency Ipsum" ]
+                ]
+            , h2 [ class "subheading" ] [ text model.intro ]
+            , div [ class "form" ]
+                [ row "I want" model.paragraphsMin "paragraphs"
+                , row "with at least" model.paragraphsMax "but no more"
+                , row "than" model.sentences "sentences."
+                , div [ class "form__row" ]
+                    [ button [ class "button form__button", onClick GenerateIpsum ] [ text "Surprise and delight" ] ]
+                ]
+            ]
         ]
-        , h2 [class "subheading"] [text subheading]
-        , div [class "form"]
-          [ div [class "form__row"]
-            [ label [class "form__label"] [text "I want"]
-            , div [class "form__input-wrap"]
-              [ span [class "form__input"] [text "3"]
-              , div [class "form__toggle"]
-              [ span [class "form__toggle-up"] []
-              , span [class "form__toggle-down"] []
-              ]
-            ]
-            , label [class "form__label"] [text "paragraphs"]
-            ]
-          , div [class "form__row"]
-            [ label [class "form__label"] [text "with at least"]
-            , div [class "form__input-wrap"]
-              [ span [class "form__input"] [text "5"]
-              , div [class "form__toggle"]
-              [ span [class "form__toggle-up"] []
-              , span [class "form__toggle-down"] []
-              ]
-            ]
-            , label [class "form__label"] [text "sentences"]
-            ]
-          , div [class "form__row"]
-            [ label [class "form__label"] [text "and no more than"]
-            , div [class "form__input-wrap"]
-              [ span [class "form__input"] [text "7"]
-              , div [class "form__toggle"]
-              [ span [class "form__toggle-up"] []
-              , span [class "form__toggle-down"] []
-              ]
-            ]
-          ]
-          , div [class "form__row"]
-            [ button [ class "button form__button", onClick GenerateIpsum ] [text "Surprise and delight"] ]
-          ]
-       ]
-    ]

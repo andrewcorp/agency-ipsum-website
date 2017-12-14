@@ -1,14 +1,20 @@
 .form {
-  font-size: 2.85vmax;
-  padding-top:2.75vmax;
+  font-size: 2.25vmax;
+  padding-top:2.25vmax;
   @include nunito-extra-light;
+  @media all and (min-width:768px){
+    padding-top:2vmax;
+  }
 }
 
 .form__row {
   align-items: center;
   justify-content: center;
   display: flex;
-  margin: 0 0 1.75vmax 0;
+  margin: 0 0 4vmax 0;
+  @media all and (min-width:768px){
+    margin: 0 0 1.5vmax 0;
+  }
 }
 
 .form__label, .form__input-wrap, .form__toggle {
@@ -61,5 +67,5 @@
 }
 
 .form__button {
-  margin: 2.25vmax auto 0 auto;
+  margin: 2vmax auto 0 auto;
 }

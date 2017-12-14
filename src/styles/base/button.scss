@@ -4,8 +4,8 @@
   color: $white;
   cursor: pointer;
   display: inline-block;
-  font-size: 1.55vmax;
-  padding: 1.45vmax 3.15vmax;
+  font-size: 2.75vmax;
+  padding: 2.5vmax 5vmax;
   position: relative;
   z-index: 1;
   @include nunito-light;
@@ -36,5 +36,12 @@
     &:after{
       transform:translateY(3.5px);
     }
+  }
+  @media all and (min-width:768px){
+    font-size:2vmax;
+    padding: 1.35vmax 3vmax;
+  }
+  @media all and (min-width:1024px){
+    font-size:1.5vmax;
   }
 }

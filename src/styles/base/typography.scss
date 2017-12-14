@@ -1,18 +1,34 @@
 .display {
-  font-size: 3.75vmax;
+  font-size: 4vmax;
   @include nunito-light;
+  @media all and (min-width:768px){
+    font-size: 3.65vmax;
+  }
 }
 
 .subheading {
   color: $white;
   background: $black-30;
-  font-size: 1.5vmax;
+  font-size: 2vmax;
+  line-height:1.4;
   margin: 2.5vmax 0 1.5vmax 0;
   padding: 1.75vmax 2.25vmax;
   @include source-sans-regular;
+  @media all and (min-width:768px){
+    font-size: 1.75vmax;
+  }
+  @media all and (min-width:1024px){
+    font-size: 1.5vmax;
+  }
+  @media all and (min-width:1400px){
+    font-size: 1vmax;
+  }
 }
 
 .body {
   font-size: 1rem;
   margin-bottom: 1rem;
+  @media all and (min-width:768px){
+    font-size: 1rem;
+  }
 }
