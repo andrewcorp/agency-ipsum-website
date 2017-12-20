@@ -10,7 +10,9 @@
     "test": "elm test",
     "test:watch": "elm test --watch"
   },
-  "dependencies": {},
+  "dependencies": {
+    "digital-marketing-ipsum": "^0.1.2"
+  },
   "devDependencies": {
     "copy-webpack-plugin": "^4.0.1",
     "elm-test": "^0.18.9",
