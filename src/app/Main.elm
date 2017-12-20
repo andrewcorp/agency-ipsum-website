@@ -1,32 +1,25 @@
-module Main exposing (..)
+port module Main exposing (..)
 
-import Random exposing (Generator, int, initialSeed, generate)
-import String exposing (concat)
-
-import Html exposing (Html, button, div, h1, h2, img, label, span, text)
+import Html exposing (..)
 import Html.Attributes exposing (class, height, src, style, width)
 import Html.Events exposing (onClick)
+import Random exposing (Generator, generate, initialSeed, int)
+import String exposing (concat)
 
 
 -- TODO: Dynamically generate the subheading text
 -- TODO: Dynamically generate button text (innovate, disrupt, synergise, go viral, surprise and delight)
+-- PORTS
 
 
 main =
-     Html.program
-    { init = init
-    , view = view
-    , update = update
-    , subscriptions = subscriptions
-    }
+    Html.program
+        { init = init
+        , view = view
+        , update = update
+        , subscriptions = subscriptions
+        }
 
-
--- SUBSCRIPTIONS
-
-
-subscriptions : Model -> Sub Msg
-subscriptions model =
-  Sub.none
 
 
 -- Model
@@ -36,32 +29,40 @@ type alias Model =
     { intro : String
     , buttonText : String
     , paragraphs : Int
-    , sentencesMin : Int
-    , sentencesMax : Int
+    , sentenceMin : Int
+    , sentenceMax : Int
     , backgroundId : Int
     }
 
 
-init : (Model, Cmd Msg)
+init : ( Model, Cmd Msg )
 init =
-    ({ intro = "Generating dummy text that engages dark social to make the logo bigger"
-     , buttonText = "Surprise and delight"
-     , paragraphs = 4
-     , sentencesMin = 3
-     , sentencesMax = 2
-     , backgroundId = 1
-     }
-     , backgroundCmd
+    ( { intro = "Generating dummy text that engages dark social to make the logo bigger"
+      , buttonText = "Surprise and delight"
+      , paragraphs = 4
+      , sentenceMin = 3
+      , sentenceMax = 2
+      , backgroundId = 1
+      }
+    , Cmd.batch
+        [ backgroundCmd
+        ]
     )
 
+
 backgroundIdGenerator : Generator Int
-backgroundIdGenerator = int 1 8
+backgroundIdGenerator =
+    int 1 8
+
 
 backgroundCmd : Cmd Msg
 backgroundCmd =
-  generate NewBackgroundId backgroundIdGenerator
+    generate NewBackgroundId backgroundIdGenerator
+
+
 
 -- Update
+
 
 type Msg
     = GenerateIpsum
@@ -69,50 +70,78 @@ type Msg
     | Decrement Quantity
     | ChangeBackground
     | NewBackgroundId Int
+    | ChangeIntro
+    | NewIntro String
+
 
 type Quantity
     = Paragraphs
-    | SentencesMin
-    | SentencesMax
+    | SentenceMin
+    | SentenceMax
+
+
+type alias Params =
+    { paragraphs : Int
+    , sentenceMin : Int
+    , sentenceMax : Int
+    }
+
+
+port changeIntro : Params -> Cmd msg
+
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         GenerateIpsum ->
-            ({ model | intro = "New value" }, Cmd.none)
+            ( { model | intro = "New value" }, Cmd.none )
+
         Increment quantity ->
-            (setQuantity model quantity ((getQuantity model quantity) + 1), Cmd.none)
+            ( setQuantity model quantity (getQuantity model quantity + 1), Cmd.none )
+
         Decrement quantity ->
-            (setQuantity model quantity ((getQuantity model quantity) - 1), Cmd.none)
+            ( setQuantity model quantity (getQuantity model quantity - 1), Cmd.none )
+
         ChangeBackground ->
-            (model, backgroundCmd)
+            ( model, backgroundCmd )
+
         NewBackgroundId id ->
-            ({ model | backgroundId = id }, Cmd.none)
+            ( { model | backgroundId = id }, Cmd.none )
+
+        ChangeIntro ->
+            ( model, changeIntro { paragraphs = 1, sentenceMin = 1, sentenceMax = 1 } )
+
+        NewIntro str ->
+            ( { model | intro = str }, Cmd.none )
 
 
 getQuantity : Model -> Quantity -> Int
 getQuantity model quantity =
     case quantity of
-      Paragraphs ->
-        model.paragraphs
-      SentencesMin ->
-        model.sentencesMin
-      SentencesMax ->
-        model.sentencesMax
+        Paragraphs ->
+            model.paragraphs
+
+        SentenceMin ->
+            model.sentenceMin
+
+        SentenceMax ->
+            model.sentenceMax
 
 
 setQuantity : Model -> Quantity -> Int -> Model
 setQuantity model quantity value =
     if value < 1 then
-      model
+        model
     else
-      case quantity of
-        Paragraphs ->
-          { model | paragraphs = value }
-        SentencesMin ->
-          { model | sentencesMin = value }
-        SentencesMax ->
-          { model | sentencesMax = value }
+        case quantity of
+            Paragraphs ->
+                { model | paragraphs = value }
+
+            SentenceMin ->
+                { model | sentenceMin = value }
+
+            SentenceMax ->
+                { model | sentenceMax = value }
 
 
 row : String -> Int -> String -> Quantity -> Html Msg
@@ -128,6 +157,19 @@ row label1 value label2 quantity =
             ]
         , label [ class "form__label" ] [ text label2 ]
         ]
+
+
+
+-- SUBSCRIPTIONS
+
+
+port ipsum : (String -> msg) -> Sub msg
+
+
+subscriptions : Model -> Sub Msg
+subscriptions model =
+    ipsum NewIntro
+
 
 
 -- View
@@ -147,10 +189,10 @@ view model =
             , h2 [ class "subheading" ] [ text model.intro ]
             , div [ class "form" ]
                 [ row "I want" model.paragraphs "paragraphs" Paragraphs
-                , row "with at least" model.sentencesMin "but no more" SentencesMin
-                , row "than" model.sentencesMax "sentences." SentencesMax
+                , row "with at least" model.sentenceMin "but no more" SentenceMin
+                , row "than" model.sentenceMax "sentences." SentenceMax
                 , div [ class "form__row" ]
-                    [ button [ class "button form__button", onClick ChangeBackground ] [ text "Surprise and delight" ] ]
+                    [ button [ class "button form__button", onClick ChangeIntro ] [ text "Surprise and delight" ] ]
                 ]
             ]
         ]
