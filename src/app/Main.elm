@@ -64,6 +64,19 @@ buttonText model =
     withDefault "" (Array.get model.buttonTextId (Array.fromList [ "Innovate", "Disrupt", "Synergise", "Go viral", "Surprise and delight" ]))
 
 
+renderModal : Model -> Html Msg
+renderModal model =
+    case model.ipsum of
+        Nothing ->
+            text ""
+
+        Just ipsum ->
+            div [ class "modal" ]
+                [ p [] [ text (withDefault "" model.ipsum) ]
+                , button [ onClick ClearIpsum ] [ text "clear" ]
+                ]
+
+
 
 -- Update
 
@@ -77,6 +90,7 @@ type Msg
     | NewBackgroundId Int
     | NewButtonTextId Int
     | NewIntro String
+    | ClearIpsum
 
 
 type Quantity
@@ -124,6 +138,9 @@ update msg model =
 
         NewIntro str ->
             ( { model | intro = Just str }, Cmd.none )
+
+        ClearIpsum ->
+            ( { model | ipsum = Nothing }, Cmd.none )
 
 
 getQuantity : Model -> Quantity -> Int
@@ -211,6 +228,6 @@ view model =
                 , div [ class "form__row" ]
                     [ button [ class "button form__button", onClick Ipsum ] [ text (buttonText model) ] ]
                 ]
-            , p [] [ text (withDefault "" model.ipsum) ]
+            , renderModal model
             ]
         ]
