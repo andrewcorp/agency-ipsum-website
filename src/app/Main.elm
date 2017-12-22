@@ -9,9 +9,6 @@ import Random exposing (Generator, generate, initialSeed, int)
 import String exposing (concat)
 
 
--- PORTS
-
-
 main =
     Html.program
         { init = init
@@ -22,7 +19,42 @@ main =
 
 
 
--- Model
+-- PORTS
+
+
+type alias Params =
+    { paragraphs : Int
+    , sentenceMin : Int
+    , sentenceMax : Int
+    }
+
+
+port generateIntro : Params -> Cmd msg
+
+
+port generateIpsum : Params -> Cmd msg
+
+
+
+-- SUBSCRIPTIONS
+
+
+port newIntro : (String -> msg) -> Sub msg
+
+
+port newIpsum : (String -> msg) -> Sub msg
+
+
+subscriptions : Model -> Sub Msg
+subscriptions model =
+    Sub.batch
+        [ newIntro NewIntro
+        , newIpsum NewIpsum
+        ]
+
+
+
+-- MODEL
 
 
 type alias Model =
@@ -54,31 +86,17 @@ init =
     )
 
 
+
+-- COMMANDS
+
+
 generateBackground : Cmd Msg
 generateBackground =
     generate NewBackgroundId (int 1 8)
 
 
-buttonText : Model -> String
-buttonText model =
-    withDefault "" (Array.get model.buttonTextId (Array.fromList [ "Innovate", "Disrupt", "Synergise", "Go viral", "Surprise and delight" ]))
 
-
-renderModal : Model -> Html Msg
-renderModal model =
-    case model.ipsum of
-        Nothing ->
-            text ""
-
-        Just ipsum ->
-            div [ class "modal" ]
-                [ p [] [ text (withDefault "" model.ipsum) ]
-                , button [ onClick ClearIpsum ] [ text "clear" ]
-                ]
-
-
-
--- Update
+-- UPDATE
 
 
 type Msg
@@ -97,19 +115,6 @@ type Quantity
     = Paragraphs
     | SentenceMin
     | SentenceMax
-
-
-type alias Params =
-    { paragraphs : Int
-    , sentenceMin : Int
-    , sentenceMax : Int
-    }
-
-
-port generateIntro : Params -> Cmd msg
-
-
-port generateIpsum : Params -> Cmd msg
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -172,6 +177,23 @@ setQuantity model quantity value =
                 { model | sentenceMax = value }
 
 
+
+-- VIEWS
+
+
+renderModal : Model -> Html Msg
+renderModal model =
+    case model.ipsum of
+        Nothing ->
+            text ""
+
+        Just ipsum ->
+            div [ class "modal" ]
+                [ pre [ class "body" ] [ text (withDefault "" model.ipsum) ]
+                , button [ class "modal__close", onClick ClearIpsum ] [ text "clear" ]
+                ]
+
+
 row : String -> Int -> String -> Quantity -> Html Msg
 row label1 value label2 quantity =
     div [ class "form__row" ]
@@ -185,28 +207,6 @@ row label1 value label2 quantity =
             ]
         , label [ class "form__label" ] [ text label2 ]
         ]
-
-
-
--- SUBSCRIPTIONS
-
-
-port newIntro : (String -> msg) -> Sub msg
-
-
-port newIpsum : (String -> msg) -> Sub msg
-
-
-subscriptions : Model -> Sub Msg
-subscriptions model =
-    Sub.batch
-        [ newIntro NewIntro
-        , newIpsum NewIpsum
-        ]
-
-
-
--- View
 
 
 view : Model -> Html Msg
@@ -226,8 +226,20 @@ view model =
                 , row "with at least" model.sentenceMin "but no more" SentenceMin
                 , row "than" model.sentenceMax "sentences." SentenceMax
                 , div [ class "form__row" ]
-                    [ button [ class "button form__button", onClick Ipsum ] [ text (buttonText model) ] ]
+                    [ button [ class "button form__button", onClick Ipsum ] [ buttonText model ] ]
                 ]
             , renderModal model
             ]
         ]
+
+
+buttonText : Model -> Html Msg
+buttonText model =
+    let
+        labelArray =
+            Array.fromList [ "Innovate", "Disrupt", "Synergise", "Go viral", "Surprise and delight" ]
+
+        selectedLabel =
+            Array.get model.buttonTextId labelArray
+    in
+    text (withDefault "" selectedLabel)
