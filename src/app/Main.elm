@@ -73,8 +73,8 @@ init =
     ( { intro = Nothing
       , ipsum = Nothing
       , paragraphs = 4
-      , sentenceMin = 3
-      , sentenceMax = 2
+      , sentenceMin = 5
+      , sentenceMax = 6
       , backgroundId = 1
       , buttonTextId = 0
       }
