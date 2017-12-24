@@ -92,7 +92,7 @@ init =
 
 generateBackground : Cmd Msg
 generateBackground =
-    generate NewBackgroundId (int 1 8)
+    generate NewBackgroundId (int 1 10)
 
 
 
