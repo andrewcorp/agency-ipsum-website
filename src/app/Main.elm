@@ -197,7 +197,7 @@ renderModal model =
             div [ class "modal" ]
                 [ pre [ id "ipsum-text", class "body" ] [ text (withDefault "" model.ipsum) ]
                 , button [ class "modal__close", onClick ClearIpsum ] [ text "clear" ]
-                , button [ class "button modal__button", onClick CopyText ] [ text "Copy to clipboard" ]
+                , button [ class "button modal__button", onClick CopyText ] [ text "Copy" ]
                 ]
 
 
