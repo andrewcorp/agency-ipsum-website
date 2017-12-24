@@ -1,5 +1,5 @@
 .display {
-  font-size: 4vmax;
+  font-size: 5vmax;
   @include nunito-light;
   @media all and (min-width:768px){
     font-size: 3.65vmax;
@@ -9,7 +9,7 @@
 .subheading {
   color: $white;
   background: $black-30;
-  font-size: 2vmax;
+  font-size: 3vmax;
   line-height:1.4;
   margin: 2.5vmax 0 1.5vmax 0;
   padding: 1.75vmax 2.25vmax;

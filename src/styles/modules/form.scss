@@ -1,8 +1,9 @@
 .form {
-  font-size: 2.25vmax;
-  padding-top:2.25vmax;
+  font-size: 3vmax;
+  padding-top:3vmax;
   @include nunito-extra-light;
   @media all and (min-width:768px){
+    font-size: 2.25vmax;
     padding-top:2vmax;
   }
 }
@@ -22,6 +23,7 @@
 }
 
 .form__input-wrap {
+  align-items:center;
   background: rgba(0,0,0,0.3);
   color: $gold;
   display: inline-flex;
@@ -42,27 +44,27 @@
   width:1rem;
 }
 
-.form__toggle-up, .form__toggle-down {
-  height: 40%;
-  left: 0;
-  position: absolute;
+.form__toggle-up, .form__toggle-down{
+  display: block;
+  height: 50%;
+  position: relative;
   width: 100%;
+  &:before{
+    content: "\25BE";
+    display: block;
+  }
 }
 
 .form__toggle-up {
-  top: 10%;
   &:before{
-    content: "\25BE";
-    display:block;
+    top: 7.5%;
     transform: scaleY(-1);
   }
 }
 
 .form__toggle-down {
-  bottom: 10%;
   &:before{
-    content: "\25BE";
-    display:block;
+    bottom: 7.5%;
   }
 }
 
