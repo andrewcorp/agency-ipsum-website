@@ -1,17 +1,19 @@
 .modal{
-  background: $black-85;
-  bottom: 5vmax;
+  background: $black-90;
+  bottom: 3vmax;
   color: $white;
-  left: 5vmax;
-  padding: 5rem;
+  left: 3vmax;
+  padding: 3.5rem;
   position: fixed;
-  right: 5vmax;
-  text-align: left;
-  top: 5vmax;
+  right: 3vmax;
+  text-align: center;
+  top: 3vmax;
   z-index: 1;
   pre{
-    height: 100%;
+    height: calc(100% - 5.5vmax);
+    margin:0;
     overflow: scroll;
+    text-align: left;
     width: 100%;
     white-space: pre-wrap;
     word-wrap: break-word;
@@ -19,15 +21,18 @@
 }
 .modal__close{
   background: url('/images/close.png') no-repeat center;
-  background-size: 30px 30px;
+  background-size: 20px 20px;
   border: 0;
   color: $white;
   display: block;
-  height: 30px;
+  height: 20px;
   padding: 0;
   position: absolute;
   right: 2rem;
   text-indent: -9999px;
   top: 2rem;
-  width: 30px;
+  width: 20px;
+}
+.modal__button{
+  margin:1vmax auto 0;
 }

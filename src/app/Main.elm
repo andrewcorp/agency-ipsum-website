@@ -2,7 +2,7 @@ port module Main exposing (..)
 
 import Array exposing (fromList, get)
 import Html exposing (..)
-import Html.Attributes exposing (class, height, src, style, width)
+import Html.Attributes exposing (id, class, height, src, style, width)
 import Html.Events exposing (onClick)
 import Maybe exposing (withDefault)
 import Random exposing (Generator, generate, initialSeed, int)
@@ -34,6 +34,8 @@ port generateIntro : Params -> Cmd msg
 
 port generateIpsum : Params -> Cmd msg
 
+
+port copyText : () -> Cmd msg
 
 
 -- SUBSCRIPTIONS
@@ -104,6 +106,7 @@ type Msg
     | NewIpsum String
     | Increment Quantity
     | Decrement Quantity
+    | CopyText
     | ChangeBackground
     | NewBackgroundId Int
     | NewButtonTextId Int
@@ -131,6 +134,9 @@ update msg model =
 
         Decrement quantity ->
             ( setQuantity model quantity (getQuantity model quantity - 1), Cmd.none )
+
+        CopyText ->
+            ( model, copyText ())
 
         ChangeBackground ->
             ( model, generateBackground )
@@ -189,8 +195,9 @@ renderModal model =
 
         Just ipsum ->
             div [ class "modal" ]
-                [ pre [ class "body" ] [ text (withDefault "" model.ipsum) ]
+                [ pre [ id "ipsum-text", class "body" ] [ text (withDefault "" model.ipsum) ]
                 , button [ class "modal__close", onClick ClearIpsum ] [ text "clear" ]
+                , button [ class "button modal__button", onClick CopyText ] [ text "Copy to clipboard" ]
                 ]
 
 
