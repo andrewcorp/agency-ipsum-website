@@ -1,6 +1,6 @@
 .form {
-  font-size: 3vmax;
-  padding-top:3vmax;
+  font-size: 5.25vmin;
+  padding-top:5.25vmin;
   @include nunito-extra-light;
   @media all and (min-width:768px){
     font-size: 2.25vmax;
@@ -12,7 +12,7 @@
   align-items: center;
   justify-content: center;
   display: flex;
-  margin: 0 0 4vmax 0;
+  margin: 0 0 6.5vmin 0;
   @media all and (min-width:768px){
     margin: 0 0 1.5vmax 0;
   }
@@ -69,5 +69,8 @@
 }
 
 .form__button {
-  margin: 2vmax auto 0 auto;
+  margin: 4vmin auto 0 auto;
+  @media all and (min-width:768px){
+    margin: 2vmax auto 0 auto;
+  }
 }

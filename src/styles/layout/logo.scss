@@ -2,17 +2,25 @@
   align-items: center;
   display: flex;
   justify-content: center;
-  margin-bottom: 3vmax;
+  margin-bottom: 5vmin;
+  @media all and (min-width:768px){
+    margin-bottom: 3vmax;
+  }
 }
 .logo__wrap {
   align-items: center;
   border: 2px solid $white;
   border-radius: 50%;
   display: flex;
-  height: 5.5vmax;
+  height: 12vmin;
   justify-content: center;
-  margin-right: 1.5rem;
-  width: 5.5vmax;
+  margin-right: 2vmin;
+  width: 12vmin;
+  @media all and (min-width:768px){
+    height: 5.5vmax;
+    margin-right: 1.5rem;
+    width: 5.5vmax;
+  }
 }
 .logo__img{
   max-width:50%;
