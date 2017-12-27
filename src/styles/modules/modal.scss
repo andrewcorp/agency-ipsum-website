@@ -1,6 +1,7 @@
 .modal{
   background: $black-90;
   bottom: 3vmax;
+  box-sizing: border-box;
   color: $white;
   left: 50%;
   max-width: 55rem;
@@ -9,10 +10,10 @@
   text-align: center;
   top: 3vmax;
   transform:translateX(-50%);
-  width:100%;
+  width:90%;
   z-index: 1;
   pre{
-    height: calc(100% - 9vmax);
+    height: calc(100% - 14.5vmax);
     margin:2vmax 0 0 0;
     overflow: scroll;
     text-align: left;
@@ -20,6 +21,15 @@
     white-space: pre-wrap;
     word-wrap: break-word;
   }
+  @media all and (min-width:$tablet-landscape){
+    width:100%;
+    pre{
+      height: calc(100% - 9.5vmax);
+    }
+  }
+}
+.modal__info{
+  margin:0;
 }
 .modal__close{
   background: url('/images/close.png') no-repeat center;

@@ -204,7 +204,7 @@ renderModal model =
 
         Just ipsum ->
             div [ class "modal" ]
-                [ p [class "modal__info"]
+                [ p [class "modal__info body"]
                 [ strong [] [text (concat [ "Generated ", (toString model.paragraphs), " paragraphs and ", (wordCount (withDefault "" model.ipsum)), " words." ]) ]]
                 , pre [ id "ipsum-text", class "body" ] [ text (withDefault "" model.ipsum) ]
                 , button [ class "modal__close", onClick ClearIpsum ] [ text "clear" ]
