@@ -2,15 +2,17 @@
   background: $black-90;
   bottom: 3vmax;
   color: $white;
-  left: 3vmax;
+  left: 50%;
+  max-width: 55rem;
   padding: 3.5rem;
   position: fixed;
-  right: 3vmax;
   text-align: center;
   top: 3vmax;
+  transform:translateX(-50%);
+  width:100%;
   z-index: 1;
   pre{
-    height: calc(100% - 9vmax);
+    height: calc(100% - 7vmax);
     margin:0;
     overflow: scroll;
     text-align: left;

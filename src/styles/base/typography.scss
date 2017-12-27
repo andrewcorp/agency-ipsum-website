@@ -16,6 +16,8 @@
   @include source-sans-regular;
   @media all and (min-width:768px){
     font-size: 1.75vmax;
+    margin: 2.5vmax 0 1.5vmax 0;
+    padding: 1.75vmax 2.25vmax;
   }
   @media all and (min-width:$tablet-landscape){
     font-size: 1.5vmax;
