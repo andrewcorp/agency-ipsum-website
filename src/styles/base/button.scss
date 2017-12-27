@@ -41,7 +41,7 @@
     font-size:2vmax;
     padding: 1.35vmax 3vmax;
   }
-  @media all and (min-width:1024px){
+  @media all and (min-width:$tablet-landscape){
     font-size:1.5vmax;
   }
 }

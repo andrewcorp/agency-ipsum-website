@@ -17,7 +17,7 @@
   @media all and (min-width:768px){
     font-size: 1.75vmax;
   }
-  @media all and (min-width:1024px){
+  @media all and (min-width:$tablet-landscape){
     font-size: 1.5vmax;
   }
   @media all and (min-width:1400px){
