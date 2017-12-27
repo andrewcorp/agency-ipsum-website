@@ -1,7 +1,7 @@
 .display {
-  font-size: 11.25vmin;
+  font-size: 10.5vmin;
   @include nunito-light;
-  @media all and (min-width:768px){
+  @media all and (min-width:$fablet){
     font-size: 3.65vmax;
   }
 }
@@ -9,12 +9,12 @@
 .subheading {
   color: $white;
   background: $black-30;
-  font-size: 5.75vmin;
+  font-size: 5vmin;
   line-height:1.4;
   margin: 7.5vmin 0 5vmin 0;
   padding: 5vmin 4.5vmin;
   @include source-sans-regular;
-  @media all and (min-width:768px){
+  @media all and (min-width:$fablet){
     font-size: 1.75vmax;
     margin: 2.5vmax 0 1.5vmax 0;
     padding: 1.75vmax 2.25vmax;
@@ -31,4 +31,8 @@
   font-size: 1rem;
   line-height: 1.5rem;
   margin-bottom: 1rem;
+}
+
+strong{
+  @include source-sans-bold;
 }

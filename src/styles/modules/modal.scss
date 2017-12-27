@@ -12,8 +12,8 @@
   width:100%;
   z-index: 1;
   pre{
-    height: calc(100% - 7vmax);
-    margin:0;
+    height: calc(100% - 9vmax);
+    margin:2vmax 0 0 0;
     overflow: scroll;
     text-align: left;
     width: 100%;
@@ -36,5 +36,5 @@
   width: 20px;
 }
 .modal__button{
-  margin:3vmax auto 0;
+  margin:2.5vmax auto 0;
 }

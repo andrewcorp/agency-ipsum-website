@@ -4,7 +4,7 @@
   color: $white;
   cursor: pointer;
   display: inline-block;
-  font-size: 3.25vmax;
+  font-size: 5vmin;
   padding: 2.25vmax 4.5vmax;
   position: relative;
   z-index: 1;
@@ -37,7 +37,7 @@
       transform:translateY(3.5px);
     }
   }
-  @media all and (min-width:768px){
+  @media all and (min-width:$fablet){
     font-size:2vmax;
     padding: 1.35vmax 3vmax;
   }

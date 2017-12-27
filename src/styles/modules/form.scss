@@ -1,8 +1,8 @@
 .form {
-  font-size: 5.25vmin;
-  padding-top:5.25vmin;
+  font-size: 4.75vmin;
+  padding-top:4.75vmin;
   @include nunito-extra-light;
-  @media all and (min-width:768px){
+  @media all and (min-width:$fablet){
     font-size: 2.25vmax;
     padding-top:2vmax;
   }
@@ -13,7 +13,7 @@
   justify-content: center;
   display: flex;
   margin: 0 0 6.5vmin 0;
-  @media all and (min-width:768px){
+  @media all and (min-width:$fablet){
     margin: 0 0 1.5vmax 0;
   }
 }
@@ -70,7 +70,7 @@
 
 .form__button {
   margin: 4vmin auto 0 auto;
-  @media all and (min-width:768px){
+  @media all and (min-width:$fablet){
     margin: 2vmax auto 0 auto;
   }
 }

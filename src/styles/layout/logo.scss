@@ -3,7 +3,7 @@
   display: flex;
   justify-content: center;
   margin-bottom: 5vmin;
-  @media all and (min-width:768px){
+  @media all and (min-width:$tablet){
     margin-bottom: 2vmax;
   }
 }
@@ -12,11 +12,11 @@
   border: 2px solid $white;
   border-radius: 50%;
   display: flex;
-  height: 12vmin;
+  height: 10vmin;
   justify-content: center;
   margin-right: 2vmin;
-  width: 12vmin;
-  @media all and (min-width:768px){
+  width: 10vmin;
+  @media all and (min-width:$tablet){
     height: 5.5vmax;
     margin-right: 1.5rem;
     width: 5.5vmax;

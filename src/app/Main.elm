@@ -204,7 +204,8 @@ renderModal model =
 
         Just ipsum ->
             div [ class "modal" ]
-                [ p [class "modal__info"] [ text (concat [ "Generated ", (toString model.paragraphs), " paragraphs and ", (wordCount (withDefault "" model.ipsum)), " words." ]) ]
+                [ p [class "modal__info"]
+                [ strong [] [text (concat [ "Generated ", (toString model.paragraphs), " paragraphs and ", (wordCount (withDefault "" model.ipsum)), " words." ]) ]]
                 , pre [ id "ipsum-text", class "body" ] [ text (withDefault "" model.ipsum) ]
                 , button [ class "modal__close", onClick ClearIpsum ] [ text "clear" ]
                 , button [ class "button modal__button", onClick CopyText ] [ text "Copy" ]
