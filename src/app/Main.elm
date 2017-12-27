@@ -177,10 +177,16 @@ setQuantity model quantity value =
                 { model | paragraphs = value }
 
             SentenceMin ->
-                { model | sentenceMin = value }
+                if value > model.sentenceMax - 1 then
+                  model
+                else
+                  { model | sentenceMin = value }
 
             SentenceMax ->
-                { model | sentenceMax = value }
+                if value < model.sentenceMin + 1 then
+                  model
+                else
+                  { model | sentenceMax = value }
 
 
 
