@@ -186,6 +186,9 @@ setQuantity model quantity value =
 
 -- VIEWS
 
+wordCount : String -> String
+wordCount string =
+  toString (List.length (String.words (toString string)))
 
 renderModal : Model -> Html Msg
 renderModal model =
@@ -195,7 +198,8 @@ renderModal model =
 
         Just ipsum ->
             div [ class "modal" ]
-                [ pre [ id "ipsum-text", class "body" ] [ text (withDefault "" model.ipsum) ]
+                [ p [class "modal__info"] [ text (concat [ "Generated ", (toString model.paragraphs), " paragraphs and ", (wordCount (withDefault "" model.ipsum)), " words." ]) ]
+                , pre [ id "ipsum-text", class "body" ] [ text (withDefault "" model.ipsum) ]
                 , button [ class "modal__close", onClick ClearIpsum ] [ text "clear" ]
                 , button [ class "button modal__button", onClick CopyText ] [ text "Copy" ]
                 ]
